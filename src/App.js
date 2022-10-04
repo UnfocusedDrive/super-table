@@ -7,7 +7,7 @@ import Tag from "./components/Tag/Tag";
 import "./styles.less";
 
 // Generate Sample Data set of 10k
-function generateData(count = 500, depth = 0) {
+function generateData(count = 10000, depth = 0) {
   let nested = [];
   if (!depth) {
     nested = generateData(4, 1);

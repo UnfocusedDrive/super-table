@@ -136,13 +136,13 @@ export default class VirtualScroll extends React.Component {
       const pageSizeFm = Math.ceil(pageSize);
 
       // final ver
-      const startIndex = 0;
+      // const startIndex = 0;
       // TODO: There is an onScroll that is triggered only when the head spacer is generated and a shift in contnet.
       // Working on resolution. It may be as simple as getting a diff on snapshot and applying it on componentDidMount.
-      // const startIndex = Math.max(
-      //   0,
-      //   scrollIndex - Math.ceil(pageSizeFm * bufferPageRatio)
-      // );
+      const startIndex = Math.max(
+        0,
+        scrollIndex - Math.ceil(pageSizeFm * bufferPageRatio)
+      );
 
       const endIndex = Math.min(
         scrollIndex + pageSizeFm + Math.ceil(pageSizeFm * bufferPageRatio),
@@ -280,9 +280,16 @@ export default class VirtualScroll extends React.Component {
     const [headSpacerRange, dataRange, tailSpacerRange] = bandSizes;
 
     const children = [
-      // this.renderSpacer(headSpacerRange, "head-spacer"),
+      this.renderSpacer(headSpacerRange, "head-spacer"),
       ...this.renderDataList(dataRange),
       this.renderSpacer(tailSpacerRange, "tail-spacer")
+      // (
+      //   <tr key="tail-spacer">
+      //     <td
+      //       name={this.getScrollHeight(tailSpacerRange)}
+      //       style={{height:  this.getScrollHeight(tailSpacerRange)}}/>
+      //     </tr>
+      // )
     ];
 
     const testHeight =
@@ -294,7 +301,11 @@ export default class VirtualScroll extends React.Component {
       // this.getScrollTarget(),
       this.getScrollTarget()?.scrollHeight,
       testHeight,
-      this.instance?.scrollHeight
+      this.instance?.scrollHeight,
+      dataRange[1] - dataRange[0],
+      tailSpacerRange[1] - tailSpacerRange[0],
+      this.getScrollHeight(tailSpacerRange),
+      children
     );
 
     if (testHeight && this.getScrollTarget()?.scrollHeight !== testHeight) {
@@ -344,6 +355,11 @@ export default class VirtualScroll extends React.Component {
 
   renderSpacer(range, key) {
     const height = this.getScrollHeight(range);
+    console.log('renderSpacer', height);
+
+    // if (range[1] - range[0] === 425 ) {
+    //   debugger
+    // }
 
     if (height) {
       const { spacerElement } = this.props;
