@@ -56,12 +56,6 @@ export default class VirtualScroll extends React.Component {
   componentDidUpdate() {
     this.updateListRef();
     this.instance = this.getInstance(LIFECYCLE.UPDATE);
-
-    console.log("componentDidUpdate", this.getScrollTarget().scrollHeight);
-
-    if (this.getScrollTarget().scrollHeight !== 22680) {
-      debugger;
-    }
   }
 
   componentWillUnmount() {
@@ -135,10 +129,6 @@ export default class VirtualScroll extends React.Component {
       const { bufferPageRatio, scrollIndex, pageSize } = this.instance;
       const pageSizeFm = Math.ceil(pageSize);
 
-      // final ver
-      // const startIndex = 0;
-      // TODO: There is an onScroll that is triggered only when the head spacer is generated and a shift in contnet.
-      // Working on resolution. It may be as simple as getting a diff on snapshot and applying it on componentDidMount.
       const startIndex = Math.max(
         0,
         scrollIndex - Math.ceil(pageSizeFm * bufferPageRatio)
@@ -148,8 +138,6 @@ export default class VirtualScroll extends React.Component {
         scrollIndex + pageSizeFm + Math.ceil(pageSizeFm * bufferPageRatio),
         this.props.data.length
       );
-
-      // const endIndex = this.props.data.length;
 
       return [startIndex, endIndex];
     }
@@ -279,46 +267,11 @@ export default class VirtualScroll extends React.Component {
     const bandSizes = this.getBandSizes();
     const [headSpacerRange, dataRange, tailSpacerRange] = bandSizes;
 
-    const children = [
+    return [
       this.renderSpacer(headSpacerRange, "head-spacer"),
       ...this.renderDataList(dataRange),
       this.renderSpacer(tailSpacerRange, "tail-spacer")
-      // (
-      //   <tr key="tail-spacer">
-      //     <td
-      //       name={this.getScrollHeight(tailSpacerRange)}
-      //       style={{height:  this.getScrollHeight(tailSpacerRange)}}/>
-      //     </tr>
-      // )
     ];
-
-    const testHeight =
-      this.getScrollHeight(dataRange) + this.getScrollHeight(tailSpacerRange);
-
-    // console.log("children", children);
-    console.log(
-      "children",
-      // this.getScrollTarget(),
-      this.getScrollTarget()?.scrollHeight,
-      testHeight,
-      this.instance?.scrollHeight,
-      dataRange[1] - dataRange[0],
-      tailSpacerRange[1] - tailSpacerRange[0],
-      this.getScrollHeight(tailSpacerRange),
-      children
-    );
-
-    if (testHeight && this.getScrollTarget()?.scrollHeight !== testHeight) {
-      debugger;
-    }
-
-    return children;
-
-    // return [
-    //   this.renderSpacer(headSpacerRange, "head-spacer"),
-    //   ...this.renderDataList(dataRange),
-    //   this.renderSpacer(tailSpacerRange, "tail-spacer")
-    // ];
   }
 
   renderDataList(range) {
@@ -328,7 +281,6 @@ export default class VirtualScroll extends React.Component {
     for (let i = range[0]; i < range[1]; i++) {
       const { key, ...restProps } = data[i];
 
-      // console.log("key", key);
       list.push(
         this.renderElement(
           listElement,
@@ -355,12 +307,6 @@ export default class VirtualScroll extends React.Component {
 
   renderSpacer(range, key) {
     const height = this.getScrollHeight(range);
-    console.log('renderSpacer', height);
-
-    // if (range[1] - range[0] === 425 ) {
-    //   debugger
-    // }
-
     if (height) {
       const { spacerElement } = this.props;
       return this.renderElement(spacerElement, {

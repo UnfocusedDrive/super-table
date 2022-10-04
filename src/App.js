@@ -74,26 +74,17 @@ export default function App() {
               flex: 0
             }}
           >
-            <h1
-              style={{
-                fontSize: "1.25rem",
-                lineHeight: "1.75rem"
-              }}
-            >
+            <h1>
               Super Table
             </h1>
-            <h2
-              style={{
-                fontSize: ".875rem",
-                lineHeight: "1.25rem"
-              }}
-            >
-              Are you <span style={{ color: "rgb(69,229,208)" }}>super</span>{" "}
+            <h2>
+              Are you <span className="cyan">super</span>{" "}
               enough to handle this table?
             </h2>
           </Layout>
           <Table
             columns={[
+              // Render Expand Icon
               {
                 dataKey: "expand",
                 render(value, row) {
@@ -110,18 +101,11 @@ export default function App() {
                         onClick={() => updateExpandedRows(key)}
                         className="expand-icon"
                         style={{
-                          width: 16,
-                          height: 16,
-                          display: "inline-block",
-                          position: "relative",
-                          borderRadius: "100%",
                           transform
                         }}
                       >
-                        <span
-                          style={{ position: "relative", left: 5, bottom: 5 }}
-                        >
-                          <a href="#" className="chevron chevron--right"></a>
+                        <span>
+                          <a href="#" className="chevron chevron--right" />
                         </span>
                       </span>
                     );
@@ -139,7 +123,6 @@ export default function App() {
                 title: "Name",
                 render(name, row) {
                   const { key, className } = row;
-                  // console.log("render", row);
                   const content = (
                     <Layout display="flex">
                       <Tag>ISS-{key}</Tag> <span>{name}</span>

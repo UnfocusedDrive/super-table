@@ -99,6 +99,7 @@ export default class Table extends React.Component {
     });
   }
 
+  // TODO: Future use
   renderHeader() {
     const { columns } = this.props;
 
@@ -144,13 +145,7 @@ export default class Table extends React.Component {
             }}
             spacerElement={(props) => {
               const { key, ...restProps } = props;
-              console.log('spacerElement', props);
-              //!!!! >>------
-              // Wrapping the TD with the props resolve the render bug.
-              // The TR itself does not work for some reason React ignores
-              // the diff on the height provided. See screenshots for
-              // more details....
-              return <tr key={key}><td {...props}/></tr>;
+              return <tr key={key}><td {...restProps}/></tr>;
             }}
             data={this.getFlattenedData(data)}
           />

@@ -46,7 +46,7 @@ export default function Header() {
           </span>
         ))}{" "}
       </span>
-      <span style={{ marginLeft: 10 }}>UI</span>
+      <span className="spacer">UI</span>
     </div>
   );
 }

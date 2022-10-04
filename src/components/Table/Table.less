@@ -1,3 +1,5 @@
+@import "../../variables.less";
+
 .table {
   display: flex;
   flex: 1;
@@ -10,13 +12,13 @@
     tr {
       transition: all 0.15s ease;
       &:hover {
-        background: rgba(255, 255, 255, 0.015);
-        color: rgba(255, 255, 255, 0.9);
+        background: @black-15;
+        color: @white-90;
       }
 
       td {
         height: 45px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid @black-5;
         font-size: 0.875rem;
         line-height: 1.25rem;
         text-align: left;
@@ -25,20 +27,32 @@
     }
 
     .expand-icon {
-      background: rgba(255, 255, 255, 0);
+      background: @black-0;
       cursor: pointer;
       transition: all 0.3s ease;
       overflow: hidden;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      position: relative;
+      border-radius: 100%;
+
       &:hover {
-        background: rgba(255, 255, 255, 0.03);
+        background: @black-3;
 
         .chevron {
-          background: rgba(255, 255, 255, 0.9);
+          background: @white-90;
 
           &::after {
-            background: rgba(255, 255, 255, 0.9);
+            background: @white-90;
           }
         }
+      }
+
+      > span {
+        position: relative;
+        left: 5px;
+        bottom: 5px;
       }
     }
   }
