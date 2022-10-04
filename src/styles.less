@@ -1,0 +1,73 @@
+@import "./variables.less";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin-top: @header-height;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+body {
+  padding: 370px;
+}
+
+/*----------------------------------------------*\
+	#CHEVRON COMPONENT STYLES
+\*----------------------------------------------*/
+
+/*  Setup defaults for size and colour   */
+@chevron-size: 6px;
+@chevron-color: rgba(255, 255, 255, 0.6);
+// @chevron-color: rgba(255, 255, 255, 1);
+@chevron-rounded: true;
+
+// Borrowed from: https://codepen.io/darby/pen/qNvNWO
+.chevron {
+  .style() {
+    display: inline-block;
+    width: @chevron-size;
+    height: (@chevron-size / 6);
+    background: @chevron-color;
+    transform: rotate(-45deg);
+    position: relative;
+    border-radius: 50em;
+  }
+
+  .style();
+
+  &--up {
+    transform: rotate(-135deg);
+  }
+
+  &--down {
+    transform: rotate(45deg);
+  }
+
+  &--right {
+    transform: rotate(-45deg);
+  }
+
+  &--left {
+    transform: rotate(135deg);
+  }
+
+  &::after {
+    .style();
+    background: @chevron-color;
+    position: absolute;
+    margin-left: -(@chevron-size / 6);
+    content: "";
+    transform: rotate(90deg);
+    transform-origin: bottom right;
+  }
+}

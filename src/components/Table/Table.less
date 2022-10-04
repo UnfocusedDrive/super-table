@@ -1,0 +1,45 @@
+.table {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+
+    tr {
+      transition: all 0.15s ease;
+      &:hover {
+        background: rgba(255, 255, 255, 0.015);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      td {
+        height: 45px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        text-align: left;
+        padding: 10px 20px;
+      }
+    }
+
+    .expand-icon {
+      background: rgba(255, 255, 255, 0);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      &:hover {
+        background: rgba(255, 255, 255, 0.03);
+
+        .chevron {
+          background: rgba(255, 255, 255, 0.9);
+
+          &::after {
+            background: rgba(255, 255, 255, 0.9);
+          }
+        }
+      }
+    }
+  }
+}
