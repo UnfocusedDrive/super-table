@@ -10,7 +10,7 @@ module.exports = merge(commonConfig, {
   devServer: {
     contentBase: './dist',
   },
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
@@ -18,7 +18,7 @@ module.exports = merge(commonConfig, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Warp Gate'
+      title: 'Super Table'
     })
   ]
 });

@@ -1,34 +1,21 @@
 {
-  "name": "@unfocused/warp-gate",
-  "description": "Rapidly deploy modern web apps. Just insert token here.",
-  "version": "0.0.0-alpha.0",
+  "name": "@unfocused/super-table",
+  "description": "SUPER TABLE",
+  "version": "0.1.0-alpha.0",
   "private": true,
   "main": "lib/index.js",
   "files": [
     "dist",
-    "lib",
     "src"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build-server && npm run build-standalone && npm run build-lib",
-    "build-server": "webpack --mode=production --config webpack.server.config.js",
-    "build-standalone": "webpack --mode=production",
-    "build-lib": "webpack --mode=production --config webpack.lib.config.js",
+    "build": "npm run clean && webpack --mode=production",
     "clean": "rimraf dist lib",
     "prepare": "npm run build",
-    "launch": "node ./dist/server.js",
     "start": "webpack serve --mode=development",
-    "start:open": "webpack serve --mode=development --open",
-    "start:production": "webpack serve --mode=production",
-    "start-styleguide": "webpack serve --config styleguide/webpack.config.js",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "watch": "webpack --watch"
+    "start:open": "webpack serve --mode=development --open"
   },
   "dependencies": {
-    "@unfocused/nurvus-ui": "git+https://github.com/UnfocusedDrive/nurvus-design-system.git#main",
-    "@unfocused/spawn": "git+https://github.com/UnfocusedDrive/Spawn.git#master",
-    "classnames": "^2.3.1",
     "lodash": "^4.17.20",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -62,13 +49,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UnfocusedDrive/warp-gate.git"
+    "url": "git+https://github.com/UnfocusedDrive/super-table.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UnfocusedDrive/warp-gate/issues"
+    "url": "https://github.com/UnfocusedDrive/super-table/issues"
   },
-  "homepage": "https://github.com/UnfocusedDrive/warp-gate#readme"
+  "homepage": "https://github.com/UnfocusedDrive/super-table#readme"
 }
