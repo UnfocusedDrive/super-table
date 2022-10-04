@@ -1,0 +1,13 @@
+$color: #2d015d;
+
+body {
+  background: $color;
+  background-color: rgb(164, 80, 139);
+  background-image: linear-gradient(326deg, rgb(164, 80, 139) 0%, rgb(95, 10, 135) 74%);
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height: 100vh;
+}
